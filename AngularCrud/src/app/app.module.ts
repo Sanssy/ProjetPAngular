@@ -1,0 +1,33 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule, Routes } from '@angular/router';
+
+
+import { AppComponent } from './app.component';
+import { CharactersListComponent } from './characters/characters-list/characters-list.component';
+import { CharacterViewComponent } from './characters/character-view/character-view.component';
+import { CreateCharacterComponent } from './characters/create-character/create-character.component';
+
+const appRoutes: Routes = [
+  { path: 'list', component: CharactersListComponent },
+  { path: 'add', component: CreateCharacterComponent },
+  { path: '', redirectTo: '/list', pathMatch: 'full' }
+];
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    CharactersListComponent,
+    CharacterViewComponent,
+    CreateCharacterComponent,
+  ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+    NgbModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
