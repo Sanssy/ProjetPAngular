@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { AppComponent } from './app.component';
 import { CharactersListComponent } from './characters/characters-list/characters-list.component';
@@ -24,10 +25,12 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BsDatepickerModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     NgbModule,
-    FormsModule
+    FormsModule,
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
