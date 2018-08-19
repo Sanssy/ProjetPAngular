@@ -1,26 +1,27 @@
-<form #characterForm="ngForm" (ngSubmit)=saveCharacter(characterForm)>
+<form #characterForm="ngForm" (ngSubmit)=saveCharacter(character)>
   <div class="card">
     <div class="card-header">
       Add a character
     </div>
     <div class="card-body">
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="name">Full name</label>
-        <input type="text" name="name" [(ngModel)]="name" class="form-control" id="name" placeholder="Enter full name">
-      </div>
-      <div class="form-group">
+        <input required type="text" name="name" [(ngModel)]="name" class="form-control" id="name" placeholder="Enter full name" #nameControl="ngModel">
+      </div> -->
+      <!-- <div class="form-group">
         <label for="email">Email address</label>
-        <input type="email" name="email" [(ngModel)]="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+        <input required type="email" name="email" [(ngModel)]="email" class="form-control" id="email" aria-describedby="emailHelp"
+          placeholder="Enter email">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
       <div class="form-group">
         <label for="phoneNumber">Phone Number</label>
         <input type="text" name="phoneNumber" [(ngModel)]="phoneNumber" class="form-control" id="phoneNumber" placeholder="Enter phone number">
-      </div>
+      </div> -->
 
       <!-- COURS 6 & 7 (radio + default checked + disabled) -->
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label>Contact Preference</label>
         <div class="form-control">
           <label class="radio-inline">
@@ -41,17 +42,17 @@
             <input type="radio" value="female" name="gender" [(ngModel)]="gender"> Female
           </label>
         </div>
-      </div>
+      </div> -->
       <!-- FIN COURS 6 & 7 -->
 
       <!-- COURS 8 (checkbox + default checked + disabled) -->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <div class="form-control">
           <label class="checkbox-inline">
             <input type="checkbox" name="isActive" [(ngModel)]="isActive"> is Active
           </label>
         </div>
-      </div>
+      </div> -->
       <!-- FIN COURS 8 -->
 
       <!-- COURS 9 (HardCoding + default select + disabled) -->
@@ -69,43 +70,34 @@
       <!-- FIN COURS 9 -->
 
       <!-- COURS 10 (select option using array + property binding) -->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="department" class="checkbox-inline">
           Department
         </label>
         <select name="department" id="department" [(ngModel)]="department" class="form-control">
           <option *ngFor="let dept of departments" [value]="dept.id">{{dept.name}}
-            <!-- what's the difference btwn [value]="dept.id" & value="{{dept.id}}" ? -->
           </option>
         </select>
-      </div>
+      </div> -->
+      <!-- what's the difference btwn [value]="dept.id" & value="{{dept.id}}" ? -->
       <!-- FIN COURS 10 -->
 
       <!-- COURS 11 & 12 (DatePicker + ngxbootstrap + bsDatepicker & bsDaterangepicker + custom ) -->
-
-      <div class="row">
+      <!-- <div class="row">
         <div class="form-group col-md-5">
           <label for="dateOfBirth">Date of Birth</label>
-          <input
-          type="text"
-          bsDatepicker
-          name="dateOfBirth"
-          [(ngModel)]="dateOfBirth"
-          class="form-control"
-          id="dateOfBirth"
-          [bsConfig]="datePickerConfig"
-          placement='right'>
+          <input type="text" bsDatepicker name="dateOfBirth" [(ngModel)]="dateOfBirth" class="form-control" id="dateOfBirth" [bsConfig]="datePickerConfig"
+            placement='right'>
         </div>
-      </div>
+      </div> -->
 
       <!-- FIN COURS 11 & 12 -->
 
       <!-- COURS 13 & 14 (ngIf + browser native validation) novalidate / ngNativeValidate -->
 
-      <div class="form-group">
-          <label for="photoPath">Photo Path</label>
-          <input type="text" name="photoPath" [(ngModel)]="photoPath"
-          class="form-control" id="photoPath" placeholder="Enter photo path">
+      <!-- <div class="form-group">
+        <label for="photoPath">Photo Path</label>
+        <input type="text" name="photoPath" [(ngModel)]="photoPath" class="form-control" id="photoPath" placeholder="Enter photo path">
       </div>
 
       <div class="form-group">
@@ -116,19 +108,236 @@
 
       <div class="form-group">
         <img [src]="photoPath" height="200" width="200" *ngIf="previewPhoto" />
-      </div>
+      </div> -->
 
       <!-- FIN COURS 13 & 14 -->
 
-      <!-- COURS 15 (validation form) -->
+
+      <!-- COURS 15 (validation form (checkbox, textbox, radiobox etc..)) -->
+
+      <div class="form-group">
+        <label for="name15">Full name</label>
+        <input required type="text" name="name15" [(ngModel)]="name15" class="form-control" id="name15" #name15Control="ngModel"
+          placeholder="Enter full name">
+      </div>
+
+      <div class="form-group">
+          <label for="email15">Email address</label>
+          <input required type="email" name="email15" [(ngModel)]="email15" class="form-control" id="email15" aria-describedby="email15Help" placeholder="Enter email">
+          <small id="email15Help" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+      <table border=1 style="border-collapse: collapse; font-family: Arial; table-layout: fixed">
+        <tr style="background-color: rgb(170, 120, 12); font-weight: bold">
+          <td colspan="3" style="padding: 3px; white-space: nowrap; width: 100%">
+            <h4>Full Name field</h4>
+          </td>
+        </tr>
+        <tr style="background-color: rgb(212, 149, 13); font-weight: bold">
+          <td style="padding: 10px; white-space: nowrap; width: 33%">
+            <div>touched: {{name15Control.touched}}</div>
+            <div>untouched: {{name15Control.untouched}}</div>
+          </td>
+          <td style="padding: 10px; white-space: nowrap; width: 33%">
+            <div>pristine: {{name15Control.pristine}}</div>
+            <div>dirty: {{name15Control.dirty}}</div>
+          </td>
+          <td style="padding: 10px; white-space: nowrap; width: 33%">
+            <div>valid: {{name15Control.valid}}</div>
+            <div>invalid: {{name15Control.invalid}}</div>
+          </td>
+        </tr>
+      </table>
+      <hr style="margin: 15px">
+      <table border=1 style="border-collapse: collapse; font-family: Arial; table-layout: fixed">
+        <tr style="background-color: rgb(170, 120, 12); font-weight: bold">
+          <td colspan="3" style="padding: 3px; white-space: nowrap; width: 100%">
+            <h4>Character Form</h4>
+          </td>
+        </tr>
+        <tr style="background-color: rgb(212, 149, 13); font-weight: bold">
+          <td style="padding: 10px; white-space: nowrap; width: 33%">
+            <div>touched: {{characterForm.touched}}</div>
+            <div>untouched: {{characterForm.untouched}}</div>
+          </td>
+          <td style="padding: 10px; white-space: nowrap; width: 33%">
+            <div>pristine: {{characterForm.pristine}}</div>
+            <div>dirty: {{characterForm.dirty}}</div>
+          </td>
+          <td style="padding: 10px; white-space: nowrap; width: 33%">
+            <div>valid: {{characterForm.valid}}</div>
+            <div>invalid: {{characterForm.invalid}}</div>
+          </td>
+        </tr>
+      </table>
+
       <!-- FIN COURS 15 -->
 
+      <!-- COURS 16 (form validation error messages)-->
 
+      <!-- <div class="form-group" [class.was-validated]="name16Control.invalid && name16Control.touched"
+      [class.was-validated]="!name16Control.invalid">
+        <label class="custom-control-label" for="name16">Full name 16</label>
+        <input required type="text" name="name16" [(ngModel)]="name16" class="form-control" id="name16" placeholder="Enter full name" #name16Control="ngModel">
+        <span class="invalid-feedback" *ngIf="name16Control.invalid && name16Control.touched">Name is required</span>
+      </div> -->
+
+      <!-- FIN COURS 16 -->
+
+      <!-- COURS 17 & 18 & 19 & 20 (binding ngModel to object + validator for email, radio ) -->
+
+      <div class="form-group">
+        <label class="control-label" for="name">Name</label>
+        <input required type="text" name="name" [(ngModel)]="character.name" class="form-control" id="name" placeholder="Enter name"
+          #name="ngModel" [ngClass]="{'is-invalid' : name.invalid && name.touched, 'is-valid' : name.valid && name.touched}">
+        <span class="invalid-feedback" *ngIf="name.invalid && name.touched">Name is required</span>
+      </div>
+
+      <!-- 18 / 19 -->
+
+      <div class="form-group" >
+        <label class="label-control" for="email">Email address</label>
+        <input [required]="contactPreference.value =='email'" email type="text" name="email" [(ngModel)]="character.email" class="form-control" id="email" aria-describedby="emailHelp"
+          placeholder="Enter email" #email="ngModel" [ngClass]="{'is-invalid' : email.invalid}" >
+
+          <!-- [ngClass]="{'is-invalid' : email.invalid}" -->
+
+        <!-- <input required pattern="^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(simpson)\.net$" type="text" name="email" [(ngModel)]="character.email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" #email="ngModel" [ngClass]="{'is-invalid' : email.invalid && email.touched, 'is-valid' : email.valid && email.touched}"> -->
+        <!-- pattern for every email validation : pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"-->
+        <!-- pattern for specific email validation : pattern="^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(simpson)\.net$"-->
+
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <span class="invalid-feedback" *ngIf="email.invalid">Email is required</span>
+
+        <span class="invalid-feedback" *ngIf="email.errors?.email">Email is invalid</span>
+        <!-- <span class="invalid-feedback" *ngIf="email.errors?.pattern && email.touched">Email is invalid</span> -->
+      </div>
+
+     <!-- Before the 21th course:  && email.touched -->
+
+      <!-- 18 / 19 FIN -->
+
+      <div class="form-group">
+        <label for="phoneNumber" for="phoneNumber">Phone Number</label>
+        <input [required]="contactPreference.value =='phoneNumber'" type="text" #phoneNumber="ngModel" name="phoneNumber" [(ngModel)]="character.phoneNumber" class="form-control" id="phoneNumber" placeholder="Enter phone number" [ngClass]="{'is-invalid' : phoneNumber.invalid}">
+        <span class="invalid-feedback" *ngIf="phoneNumber.invalid">Phone Number is required</span>
+      </div>
+
+      <!-- 20  (validator form for radio button) -->
+
+      <div class="form-group">
+        <label class="control-label">Contact Preference</label>
+        <div class="form-control" style="height: 65px">
+          <div class="custom-control custom-radio">
+            <input type="radio" required #contactPreference="ngModel" value="email" id="emailPref" name="contactPreference" [(ngModel)]="character.contactPreference"
+              class="custom-control-input" [ngClass]="{'is-invalid': contactPreference.touched && contactPreference.invalid, 'is-valid': contactPreference.touched && contactPreference.valid}">
+            <label for="emailPref" class="custom-control-label">Email</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" required #contactPreference="ngModel" value="phoneNumber" id="phoneNumberPref" name="contactPreference" [(ngModel)]="character.contactPreference"
+              class="custom-control-input" [ngClass]="{'is-invalid': contactPreference.touched && contactPreference.invalid, 'is-valid': contactPreference.touched && contactPreference.valid}">
+            <label for="phoneNumberPref" class="custom-control-label">Phone Number</label>
+          </div>
+        </div>
+        <small [ngClass]="{'text-danger': contactPreference.touched && contactPreference.invalid}" *ngIf="contactPreference.touched && contactPreference.invalid">Contact Preference is required</small>
+        <!-- Contact Preference Selected Value : {{ contactPreference.value | json }} -->
+      </div>
+
+      <!-- [class.was-validated]="gender.touched && gender.invalid" -->
+      <div class="form-group">
+        <label class="control-label">Gender</label>
+        <div class="form-control" style="height: 60px">
+          <div class="custom-control custom-radio">
+            <input type="radio" required #gender="ngModel" value="male" id="male" name="gender" [(ngModel)]="character.gender" class="custom-control-input"
+              [ngClass]="{'is-invalid': gender.touched && gender.invalid, 'is-valid': gender.touched && gender.valid}">
+            <label for="male" class="custom-control-label">Male</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" required #gender="ngModel" value="female" id="female" name="gender" [(ngModel)]="character.gender" class="custom-control-input"
+              [ngClass]="{'is-invalid': gender.touched && gender.invalid, 'is-valid': gender.touched && gender.valid}">
+            <label class="custom-control-label" for="female">Female</label>
+          </div>
+        </div>
+        <small [ngClass]="{'text-danger': gender.touched && gender.invalid}" *ngIf="gender.touched && gender.invalid">Gender is required</small>
+      </div>
+
+      <!-- 20 FIN -->
+
+      <!-- <div class="form-group was-validated">
+          <div class="custom-control custom-radio">
+          <input type="radio" class="custom-control-input" id="customControlValidation2" name="gender" required>
+          <label class="custom-control-label" for="customControlValidation2">Male</label>
+        </div>
+        <div class="custom-control custom-radio mb-3">
+          <input type="radio" class="custom-control-input" id="customControlValidation3" name="gender" required>
+          <label class="custom-control-label" for="customControlValidation3">female</label>
+          <div class="invalid-feedback">More example invalid feedback text</div>
+        </div>
+      </div> -->
+
+      <!-- <div class="form-group">
+    <label>Gender 2</label>
+<div class="form-control">
+  <div class="custom-control custom-radio custom-control-inline">
+    <input required #gender="ngModel" [(ngModel)]="character.gender" value="male" type="radio" id="male" name="gender" class="custom-control-input" [ngClass]="{'has-invalid': gender.touched && gender.invalid }">
+    <label class="custom-control-label" for="male">Male</label>
+  </div>
+  <div class="custom-control custom-radio custom-control-inline">
+    <input required #gender="ngModel" [(ngModel)]="character.gender" value="female" type="radio" id="female" name="gender" class="custom-control-input" [ngClass]="{'has-invalid': gender.touched && gender.invalid }">
+    <label class="custom-control-label" for="female">Female</label>
+  </div>
+</div>
+</div> -->
+
+      <!-- 20 FIN -->
+
+      <div class="form-group">
+        <div class="form-control">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="isActive" [(ngModel)]="character.isActive"> is Active
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="department" class="checkbox-inline">
+          Department
+        </label>
+        <select name="department" id="department" [(ngModel)]="character.department" class="form-control">
+          <option *ngFor="let dept of departments" [value]="dept.id">{{dept.name}}
+          </option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-5">
+          <label for="dateOfBirth">Date of Birth</label>
+          <input type="text" bsDatepicker name="dateOfBirth" [(ngModel)]="character.dateOfBirth" class="form-control" id="dateOfBirth"
+            [bsConfig]="datePickerConfig" placement='right'>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="photoPath">Photo Path</label>
+        <input type="text" name="photoPath" [(ngModel)]="character.photoPath" class="form-control" id="photoPath" placeholder="Enter photo path">
+      </div>
+
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="togglePhotoPreview()">
+          {{previewPhoto? 'Hide ' : 'Show '}} Preview
+        </button>
+      </div>
+
+      <div class="form-group">
+        <img [src]="character.photoPath" height="200" width="200" *ngIf="previewPhoto" />
+      </div>
+
+      <!-- FIN COURS 17 18 & 19 -->
 
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary" [disabled]="characterForm.invalid">Save</button>
     </div>
   </div>
 </form>
 Angular Generated Form Model : {{characterForm.value | json}}
+<br>
+<br> Our Character model : {{ character | json }}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Department } from '../../models/department.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { Character } from '../../models/character.model';
 
 @Component({
   selector: 'app-create-character',
@@ -10,6 +10,20 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 })
 export class CreateCharacterComponent implements OnInit {
   previewPhoto = false;
+
+  character: Character = {
+    id: null,
+    name: null,
+    gender: null,
+    email: '',
+    phoneNumber: '',
+    contactPreference: '',
+    dateOfBirth: null,
+    department: null,
+    isActive: null,
+    photoPath: null,
+  };
+
   // dateOfBirth: Date = new Date();
   datePickerConfig: Partial<BsDatepickerConfig>;
 
@@ -36,21 +50,22 @@ export class CreateCharacterComponent implements OnInit {
     this.previewPhoto = !this.previewPhoto;
   }
 
-  saveCharacter(chaForm: NgForm): void {
-    console.log(chaForm.value);
+  saveCharacter(character: Character): void {
+    console.log(character);
   }
 
   datepickerConfig() {
     this.datePickerConfig = Object.assign({},
       {
         containerClass: 'theme-dark-blue',
-        showWeekNumbers: false,
+        // showWeekNumbers: false,
         dateInputFormat: 'DD-MM-YYYY',
-        minDate: new Date(2018, 0, 1),
-        maxDate: new Date(2018, 11, 31),
+        // minDate: new Date(2018, 0, 1),
+        // maxDate: new Date(2018, 11, 31),
       }
     );
 
   }
+
 
 }
