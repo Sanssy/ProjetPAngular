@@ -1,3 +1,46 @@
 .radio-inline {
   padding-left: 5px;
 }
+
+input:invalid {
+  background-color: #ffdddd;
+}
+
+form:invalid {
+  border: 5px solid #ffdddd;
+}
+
+input:valid {
+  background-color: #ddffdd;
+  border-width: 1px;
+}
+
+form:valid {
+  border: 5px solid #ddffdd;
+  border-width: 1px;
+}
+
+input:required input:invalid {
+  border-color: #800000;
+  border-width: 3px;
+}
+
+select:invalid {
+  border: 5px solid #ffdddd;
+}
+
+select:valid {
+  background-color: #ddffdd;
+  border-width: 1px;
+}
+
+radio:valid {
+  background-color: #ddffdd;
+  border-width: 0px;
+}
+
+radio:required radio:invalid {
+  border-color: #800000;
+  border-width: 3px;
+}
+

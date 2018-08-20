@@ -115,7 +115,7 @@
 
       <!-- COURS 15 (validation form (checkbox, textbox, radiobox etc..)) -->
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="name15">Full name</label>
         <input required type="text" name="name15" [(ngModel)]="name15" class="form-control" id="name15" #name15Control="ngModel"
           placeholder="Enter full name">
@@ -169,24 +169,23 @@
             <div>invalid: {{characterForm.invalid}}</div>
           </td>
         </tr>
-      </table>
+      </table> -->
 
       <!-- FIN COURS 15 -->
 
       <!-- COURS 16 (form validation error messages)-->
 
-      <!-- <div class="form-group" [class.was-validated]="name16Control.invalid && name16Control.touched"
-      [class.was-validated]="!name16Control.invalid">
-        <label class="custom-control-label" for="name16">Full name 16</label>
+      <!-- <div class="form-group" [class.is-invalid]="name16Control.invalid && name16Control.touched">
         <input required type="text" name="name16" [(ngModel)]="name16" class="form-control" id="name16" placeholder="Enter full name" #name16Control="ngModel">
-        <span class="invalid-feedback" *ngIf="name16Control.invalid && name16Control.touched">Name is required</span>
+        <label class="col-form-label" for="name16">Full name 16</label>
+        <span class="text-muted" *ngIf="name16Control.invalid && name16Control.touched">Name is required</span>
       </div> -->
 
       <!-- FIN COURS 16 -->
 
       <!-- COURS 17 & 18 & 19 & 20 (binding ngModel to object + validator for email, radio ) -->
 
-      <div class="form-group">
+      <div class="form-group" >
         <label class="control-label" for="name">Name</label>
         <input required type="text" name="name" [(ngModel)]="character.name" class="form-control" id="name" placeholder="Enter name"
           #name="ngModel" [ngClass]="{'is-invalid' : name.invalid && name.touched, 'is-valid' : name.valid && name.touched}">
