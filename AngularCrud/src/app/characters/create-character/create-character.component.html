@@ -185,79 +185,82 @@
 
       <!-- COURS 17 & 18 & 19 & 20 (binding ngModel to object + validator for email, radio ) -->
 
-      <div class="form-group" >
-        <label class="control-label" for="name">Name</label>
-        <input required type="text" name="name" [(ngModel)]="character.name" class="form-control" id="name" placeholder="Enter name"
-          #name="ngModel" [ngClass]="{'is-invalid' : name.invalid && name.touched, 'is-valid' : name.valid && name.touched}">
+      <div class="form-group" [class.was-validated]="name.invalid && name.touched">
+        <label class="col-form-label" for="name">Name</label>
+        <input class="form-control" type="text" name="name" [(ngModel)]="character.name" id="name" placeholder="Enter name" #name="ngModel"
+          required>
         <span class="invalid-feedback" *ngIf="name.invalid && name.touched">Name is required</span>
       </div>
 
       <!-- 18 / 19 -->
 
-      <div class="form-group" >
-        <label class="label-control" for="email">Email address</label>
-        <input [required]="contactPreference.value =='email'" email type="text" name="email" [(ngModel)]="character.email" class="form-control" id="email" aria-describedby="emailHelp"
-          placeholder="Enter email" #email="ngModel" [ngClass]="{'is-invalid' : email.invalid}" >
+      <div class="form-group" [class.was-validated]="email.invalid">
+        <label class="col-form-label" for="email">Email address</label>
+        <input class="form-control" type="text" name="email" [(ngModel)]="character.email" id="email" aria-describedby="emailHelp"
+          placeholder="Enter email" #email="ngModel" [required]="contactPreference.value =='email'" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
 
-          <!-- [ngClass]="{'is-invalid' : email.invalid}" -->
+        <!-- [ngClass]="{'is-invalid' : email.invalid}" -->
 
         <!-- <input required pattern="^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(simpson)\.net$" type="text" name="email" [(ngModel)]="character.email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" #email="ngModel" [ngClass]="{'is-invalid' : email.invalid && email.touched, 'is-valid' : email.valid && email.touched}"> -->
         <!-- pattern for every email validation : pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"-->
         <!-- pattern for specific email validation : pattern="^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(simpson)\.net$"-->
 
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        <span class="invalid-feedback" *ngIf="email.invalid">Email is required</span>
+        <small id="emailHelp" class="text-muted">We'll never share your email with anyone else.</small>
+        <span class="invalid-feedback" *ngIf="email?.errors?.required">Email is required</span>
 
-        <span class="invalid-feedback" *ngIf="email.errors?.email">Email is invalid</span>
+        <span class="invalid-feedback" *ngIf="email?.errors?.pattern">Email is invalid</span>
         <!-- <span class="invalid-feedback" *ngIf="email.errors?.pattern && email.touched">Email is invalid</span> -->
       </div>
 
-     <!-- Before the 21th course:  && email.touched -->
+      <!-- Before the 21th course:  && email.touched -->
 
       <!-- 18 / 19 FIN -->
 
-      <div class="form-group">
-        <label for="phoneNumber" for="phoneNumber">Phone Number</label>
-        <input [required]="contactPreference.value =='phoneNumber'" type="text" #phoneNumber="ngModel" name="phoneNumber" [(ngModel)]="character.phoneNumber" class="form-control" id="phoneNumber" placeholder="Enter phone number" [ngClass]="{'is-invalid' : phoneNumber.invalid}">
-        <span class="invalid-feedback" *ngIf="phoneNumber.invalid">Phone Number is required</span>
+      <div class="form-group" [class.was-validated]="phoneNumber.invalid">
+        <label class="col-form-label" for="phoneNumber">Phone Number</label>
+        <input class="form-control" type="text" name="phoneNumber" [(ngModel)]="character.phoneNumber" id="phoneNumber" placeholder="Enter phone number"
+          #phoneNumber="ngModel" [required]="contactPreference.value =='phoneNumber'">
+        <small class="invalid-feedback" *ngIf="phoneNumber.invalid">Phone Number is required</small>
       </div>
 
       <!-- 20  (validator form for radio button) -->
 
-      <div class="form-group">
-        <label class="control-label">Contact Preference</label>
-        <div class="form-control" style="height: 65px">
-          <div class="custom-control custom-radio">
+      <div class="form-group" [class.was-validated]="contactPreference.invalid && contactPreference.touched">
+        <label class="col-form-label">Contact Preference</label>
+
+        <div class="form-check">
+          <div class="form-check-inline">
             <input type="radio" required #contactPreference="ngModel" value="email" id="emailPref" name="contactPreference" [(ngModel)]="character.contactPreference"
-              class="custom-control-input" [ngClass]="{'is-invalid': contactPreference.touched && contactPreference.invalid, 'is-valid': contactPreference.touched && contactPreference.valid}">
-            <label for="emailPref" class="custom-control-label">Email</label>
+              class="form-check-input">
+            <label for="emailPref" class="form-check-label">Email</label>
           </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" required #contactPreference="ngModel" value="phoneNumber" id="phoneNumberPref" name="contactPreference" [(ngModel)]="character.contactPreference"
-              class="custom-control-input" [ngClass]="{'is-invalid': contactPreference.touched && contactPreference.invalid, 'is-valid': contactPreference.touched && contactPreference.valid}">
-            <label for="phoneNumberPref" class="custom-control-label">Phone Number</label>
+          <div class="form-check-inline">
+            <input type="radio" required #contactPreference="ngModel" value="phoneNumber" id="phoneNumberPref" name="contactPreference"
+              [(ngModel)]="character.contactPreference" class="form-check-input">
+            <label for="phoneNumberPref" class="form-check-label">Phone Number</label>
           </div>
+          <small class="invalid-feedback d-block" *ngIf="contactPreference.touched && contactPreference.invalid">Contact Preference is required</small>
         </div>
-        <small [ngClass]="{'text-danger': contactPreference.touched && contactPreference.invalid}" *ngIf="contactPreference.touched && contactPreference.invalid">Contact Preference is required</small>
+
         <!-- Contact Preference Selected Value : {{ contactPreference.value | json }} -->
       </div>
 
       <!-- [class.was-validated]="gender.touched && gender.invalid" -->
-      <div class="form-group">
-        <label class="control-label">Gender</label>
-        <div class="form-control" style="height: 60px">
-          <div class="custom-control custom-radio">
-            <input type="radio" required #gender="ngModel" value="male" id="male" name="gender" [(ngModel)]="character.gender" class="custom-control-input"
-              [ngClass]="{'is-invalid': gender.touched && gender.invalid, 'is-valid': gender.touched && gender.valid}">
-            <label for="male" class="custom-control-label">Male</label>
+      <div class="form-group" [class.was-validated]="gender.invalid && gender.touched">
+        <label class="col-form-label">Gender</label>
+
+        <div class="form-check">
+          <div class="form-check-inline">
+            <input type="radio" required #gender="ngModel" value="male" id="male" name="gender" [(ngModel)]="character.gender" class="form-check-input">
+            <label for="male" class="form-check-label">Male</label>
           </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" required #gender="ngModel" value="female" id="female" name="gender" [(ngModel)]="character.gender" class="custom-control-input"
-              [ngClass]="{'is-invalid': gender.touched && gender.invalid, 'is-valid': gender.touched && gender.valid}">
-            <label class="custom-control-label" for="female">Female</label>
+          <div class="form-check-inline">
+            <input type="radio" required #gender="ngModel" value="female" id="female" name="gender" [(ngModel)]="character.gender" class="form-check-input">
+            <label class="form-check-label" for="female">Female</label>
           </div>
+          <small class="invalid-feedback d-block" *ngIf="gender.touched && gender.invalid">Gender is required</small>
         </div>
-        <small [ngClass]="{'text-danger': gender.touched && gender.invalid}" *ngIf="gender.touched && gender.invalid">Gender is required</small>
+
       </div>
 
       <!-- 20 FIN -->
@@ -290,13 +293,38 @@
 
       <!-- 20 FIN -->
 
-      <div class="form-group">
-        <div class="form-control">
-          <label class="checkbox-inline">
-            <input type="checkbox" name="isActive" [(ngModel)]="character.isActive"> is Active
-          </label>
+      <!-- COURS 22 -->
+
+      <div class="form-check" [class.has-validated]="isActive.invalid && isActive.touched">
+        <div class="form-check-inline">
+          <input class="form-check-input" type="checkbox" name="isActive" [(ngModel)]="character.isActive" #isActive="ngModel" id="isActive"
+            [required]="character.isActive== false">
+          <label class="form-check-label" for="isActive">is Active</label>
         </div>
+        <small class="invalid-feedback d-block" *ngIf="isActive?.errors?.required && isActive.touched">Is Active is required</small>
       </div>
+
+      <!-- SECOND SOLUTION FOR HE 22th LESSON -->
+
+      <div class="form-group" [class.has-validated]="isActiveExo.invalid && isActiveExo.touched">
+        <label class="col-form-label">Is Active Exo</label>
+        <div class="form-check">
+          <div class="form-check-inline">
+            <input class="form-check-input" type="radio" name="isActiveExo" [(ngModel)]="character.isActive" #isActiveExo="ngModel" id="ActiveYes" required >
+            <label class="form-check-label" for="ActiveYes" >Yes</label>
+          </div>
+        </div>
+        <div class="form-check">
+          <div class="form-check-inline">
+            <input class="form-check-input" type="radio" name="isActiveExo" [(ngModel)]="character.isActive" #isActiveExo="ngModel" id="ActiveNo" required >
+            <label class="form-check-label" for="ActiveNo" >No</label>
+          </div>
+        </div>
+        <small class="invalid-feedback d-block" *ngIf="isActiveExo?.errors?.required && isActive.touched">Is Active is required</small>
+      </div>
+
+
+      <!-- END OF THE SOLUTION -->
 
       <div class="form-group">
         <label for="department" class="checkbox-inline">
