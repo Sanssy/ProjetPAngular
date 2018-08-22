@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Department } from '../../models/department.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Character } from '../../models/character.model';
+import { getValueInRange } from '../../../../node_modules/@ng-bootstrap/ng-bootstrap/util/util';
 
 @Component({
   selector: 'app-create-character',
@@ -44,6 +45,7 @@ export class CreateCharacterComponent implements OnInit {
      }
 
   ngOnInit() {
+    // this.checkIsActive(); FIRST SOLUTION OF THE 22th LESSON
   }
 
   togglePhotoPreview() {
@@ -66,6 +68,13 @@ export class CreateCharacterComponent implements OnInit {
     );
 
   }
+
+  // FIRST SOLUTION OF THE 22th LESSON
+  // checkIsActive() {
+  //   if ( this.character.isActive === null) {
+  //     return this.character.isActive = false;
+  //   }
+  // }
 
 
 }
