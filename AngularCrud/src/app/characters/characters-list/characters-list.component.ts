@@ -21,6 +21,8 @@ export class CharactersListComponent implements OnInit {
       department: 'US',
       isActive: true,
       photoPath: 'assets/images/Homer1.jpg',
+      password: '',
+      confirmPassword: '',
   },
     {
       id: 2,
@@ -33,6 +35,8 @@ export class CharactersListComponent implements OnInit {
       department: 'US',
       isActive: true,
       photoPath: 'assets/images/Bart1.jpg',
+      password: '',
+      confirmPassword: '',
   },
     {
       id: 3,
@@ -45,6 +49,8 @@ export class CharactersListComponent implements OnInit {
       department: 'US',
       isActive: true,
       photoPath: 'assets/images/Maggy2.png',
+      password: '',
+      confirmPassword: '',
   }
 ];
 

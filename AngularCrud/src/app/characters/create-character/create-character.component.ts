@@ -20,9 +20,13 @@ export class CreateCharacterComponent implements OnInit {
     phoneNumber: '',
     contactPreference: '',
     dateOfBirth: null,
-    department: null,
+    // department: '-1', // this broke the required validation
+    // department: null,
+    department: 'select',
     isActive: null,
     photoPath: null,
+    password: null,
+    confirmPassword: null,
   };
 
   // dateOfBirth: Date = new Date();

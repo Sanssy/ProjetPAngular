@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { CharactersListComponent } from './characters/characters-list/characters-list.component';
 import { CharacterViewComponent } from './characters/character-view/character-view.component';
 import { CreateCharacterComponent } from './characters/create-character/create-character.component';
+import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
+import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
 
 const appRoutes: Routes = [
   { path: 'list', component: CharactersListComponent },
@@ -22,6 +24,8 @@ const appRoutes: Routes = [
     CharactersListComponent,
     CharacterViewComponent,
     CreateCharacterComponent,
+    SelectRequiredValidatorDirective,
+    ConfirmEqualValidatorDirective,
   ],
   imports: [
     BrowserModule,
