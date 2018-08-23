@@ -5,6 +5,7 @@ import { Character } from '../../models/character.model';
 // import { getValueInRange } from '../../../../node_modules/@ng-bootstrap/ng-bootstrap/util/util';
 import { CharacterService } from '../character.service';
 import { Router } from '@angular/router';
+import { Gender } from '../../enums/gender.enum';
 
 @Component({
   selector: 'app-create-character',
@@ -85,11 +86,12 @@ export class CreateCharacterComponent implements OnInit {
   saveCharacter() {
     this._characterService.save(this.character);
     this._router.navigate(['list']);
-
+}
   // Before the 31st lesson :
 
   // saveCharacter(character: Character): void {
   //   console.log(character);
   // }
+
 
 }
