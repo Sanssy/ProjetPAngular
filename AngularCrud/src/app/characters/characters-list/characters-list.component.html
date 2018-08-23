@@ -1,10 +1,9 @@
 <div class="card-deck">
-  <div class="card" *ngFor="let perso of characters">
-    <img class="card-img-top" src="{{perso.photoPath}}" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{perso.name}}</h5>
-      <p class="card-text">test</p>
-      <a class="btn btn-primary">Details</a>
-    </div>
+<div class="card" *ngFor="let perso of characters">
+  <img class="card-img-top" src="{{perso.photoPath}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{perso.name}}</h5>
+    <p class="card-text">{{perso.department}}</p>
+    <a class="btn btn-primary">Details</a>
   </div>
 </div>

@@ -11,6 +11,7 @@ import { CharacterViewComponent } from './characters/character-view/character-vi
 import { CreateCharacterComponent } from './characters/create-character/create-character.component';
 import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
 import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
+import { CharacterService } from './characters/character.service';
 
 const appRoutes: Routes = [
   { path: 'list', component: CharactersListComponent },
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
     FormsModule,
   ],
 
-  providers: [],
+  providers: [CharacterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
