@@ -14,6 +14,7 @@ import { Gender } from '../../enums/gender.enum';
 })
 export class CreateCharacterComponent implements OnInit {
   previewPhoto = false;
+  gender = Gender;
 
   character: Character = {
     id: null,
@@ -87,8 +88,8 @@ export class CreateCharacterComponent implements OnInit {
     this._characterService.save(this.character);
     this._router.navigate(['list']);
 }
-  // Before the 31st lesson :
 
+// Before the 31st lesson :
   // saveCharacter(character: Character): void {
   //   console.log(character);
   // }

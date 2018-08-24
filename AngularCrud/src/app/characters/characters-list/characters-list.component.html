@@ -1,79 +1,87 @@
+<div *ngFor="let character of characters">
+    <app-character-view [perso]="character" ></app-character-view>
+</div>
 
-  <div class="card card-primary" *ngFor="let perso of characters">
-    <div class="card-header bg-light">
-      <h3 class="card-title">{{perso.name}}</h3>
-    </div>
-    <div class="card-body">
-      <div class="col-xs-10">
-        <div class="row">
-          <div class="col-xs-4">
-            <img class="card-img-top" src="{{perso.photoPath}}" alt="Card image cap">
+<!-- Before the 33rd lesson -->
+<!-- <div class="card card-primary" *ngFor="let perso of characters"> -->
+<!-- <div class="card-header bg-light">
+    <h3 class="card-title">{{perso.name}}</h3>
+  </div>
+  <div class="card-body">
+    <div class="col-xs-10">
+      <div class="row">
+        <div class="col-xs-4">
+          <img class="card-img-top" src="{{perso.photoPath}}" alt="Card image cap">
+        </div>
+        <div class="col-sm-8">
+
+          <div class="row">
+            <div class="col-sm-6">
+              Gender
+            </div>
+            <div class="col-sm-5.5">
+              : {{perso.gender}}
+            </div>
           </div>
-          <div class="col-sm-8">
-
-            <div class="row">
-              <div class="col-sm-6">
-                Gender
-              </div>
-              <div class="col-sm-5.5">
-                : {{perso.gender}}
-              </div>
+          <div class="row">
+            <div class="col-sm-6">
+              Date of Birth
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                  Date of Birth
-                </div>
-                <div class="col-sm-5.5">
-                  : {{perso.dateOfBirth | date }}
-                </div>
-              </div>
-              <div class="row">
-                  <div class="col-sm-6">
-                    Contact Preference
-                  </div>
-                  <div class="col-sm-5.5">
-                    : {{perso.contactPreference}}
-                  </div>
-                </div>
-            <div class="row">
-                <div class="col-sm-6">
-                  Phone
-                </div>
-                <div class="col-sm-5.5">
-                  : {{perso.phoneNumber}}
-                </div>
-              </div>
-            <div class="row">
-              <div class="col-sm-6">
-                Email
-              </div>
-              <div class="col-sm-5.5">
-                : {{perso.email}}
-              </div>
+            <div class="col-sm-5.5">
+              : {{perso.dateOfBirth | date }}
             </div>
-            <div class="row">
-              <div class="col-sm-6">
-                Department
-              </div>
-              <div class="col-sm-5.5">
-                : {{perso.department}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                Is Active
-              </div>
-              <div class="col-sm-5.5">
-                : {{perso.isActive}}
-              </div>
-            </div>
-
           </div>
+          <div class="row">
+            <div class="col-sm-6">
+              Contact Preference
+            </div>
+            <div class="col-sm-5.5">
+              : {{perso.contactPreference}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              Phone
+            </div>
+            <div class="col-sm-5.5">
+              : {{perso.phoneNumber}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              Email
+            </div>
+            <div class="col-sm-5.5">
+              : {{perso.email}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              Department
+            </div>
+            <div class="col-sm-5.5" [ngSwitch]="perso.department">
+              :
+              <span *ngSwitchCase="1">Help Desk</span>
+              <span *ngSwitchCase="2">HR</span>
+              <span *ngSwitchCase="3">IT</span>
+              <span *ngSwitchCase="4">Payroll</span>
+              <span *ngSwitchCase="5">Admin</span>
+              <span *ngSwitchDefault>N/A</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              Is Active
+            </div>
+            <div class="col-sm-5.5">
+              : {{perso.isActive}}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-        <div class="card-footer bg-light">
-          <a class="btn btn-primary text-white float-right">Details</a>
-        </div>
   </div>
-
+  <div class="card-footer bg-light">
+    <a class="btn btn-primary text-white float-right">Details</a>
+  </div> -->

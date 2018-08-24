@@ -1,3 +1,83 @@
-<p>
-  character-view works!
-</p>
+<div class="card card-primary">
+  <div class="card-header bg-light">
+    <h5 class="card-title">{{perso.name}}</h5>
+  </div>
+  <div class="card-body">
+    <div class="col-xs-10">
+      <div class="row">
+        <div class="col-xs-4">
+          <img class="card-img-top" src="{{perso.photoPath}}" alt="Card image cap">
+        </div>
+        <div class="col-sm-8">
+
+          <div class="row">
+            <div class="col-sm-6">
+              Gender
+            </div>
+            <div class="col-sm-5.5">
+              : {{perso.gender}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              Date of Birth
+            </div>
+            <div class="col-sm-5.5">
+              : {{perso.dateOfBirth | date }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              Contact Preference
+            </div>
+            <div class="col-sm-5.5">
+              : {{perso.contactPreference}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              Phone
+            </div>
+            <div class="col-sm-5.5">
+              : {{perso.phoneNumber}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              Email
+            </div>
+            <div class="col-sm-5.5">
+              : {{perso.email}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              Department
+            </div>
+            <div class="col-sm-5.5" [ngSwitch]="perso.department">
+              :
+              <span *ngSwitchCase="1">Help Desk</span>
+              <span *ngSwitchCase="2">HR</span>
+              <span *ngSwitchCase="3">IT</span>
+              <span *ngSwitchCase="4">Payroll</span>
+              <span *ngSwitchCase="5">Admin</span>
+              <span *ngSwitchDefault>N/A</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              Is Active
+            </div>
+            <div class="col-sm-5.5">
+              : {{perso.isActive}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer bg-light">
+    <a class="btn btn-primary text-white float-right">Details</a>
+  </div>
+</div>

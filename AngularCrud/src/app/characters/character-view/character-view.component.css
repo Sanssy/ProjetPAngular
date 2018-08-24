@@ -1,0 +1,12 @@
+.card-img-top {
+  width: 208px;
+  height: 210px;
+}
+
+.card {
+  margin-bottom: 10px;
+}
+
+h5.card-title {
+  margin-bottom: 0px;
+}
