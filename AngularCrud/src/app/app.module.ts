@@ -12,10 +12,17 @@ import { CreateCharacterComponent } from './characters/create-character/create-c
 import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
 import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
 import { CharacterService } from './characters/character.service';
+import { CreateCharacterCanDeactivateGuard } from './characters/create-character-can-deactivate.guard';
+import { CharacterDetailsComponent } from './characters/character-details/character-details.component';
 
 const appRoutes: Routes = [
   { path: 'list', component: CharactersListComponent },
-  { path: 'add', component: CreateCharacterComponent },
+  {
+    path: 'add',
+    component: CreateCharacterComponent,
+    canDeactivate: [CreateCharacterCanDeactivateGuard]
+   },
+   { path: 'character/:id', component: CharacterDetailsComponent },
   { path: '', redirectTo: '/list', pathMatch: 'full' }
 ];
 
@@ -27,6 +34,7 @@ const appRoutes: Routes = [
     CreateCharacterComponent,
     SelectRequiredValidatorDirective,
     ConfirmEqualValidatorDirective,
+    CharacterDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +44,7 @@ const appRoutes: Routes = [
     FormsModule,
   ],
 
-  providers: [CharacterService],
+  providers: [CharacterService, CreateCharacterCanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

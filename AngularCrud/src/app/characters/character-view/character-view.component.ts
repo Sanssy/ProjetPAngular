@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Character } from '../../models/character.model';
 
 @Component({
@@ -7,12 +7,27 @@ import { Character } from '../../models/character.model';
   styleUrls: ['./character-view.component.css']
 })
 export class CharacterViewComponent implements OnInit {
-
   @Input() perso: Character;
+
+  // @Output() notify: EventEmitter<string> = new EventEmitter<string>();
+
+  // @Output() notifyExo: EventEmitter<Character> = new EventEmitter<Character>();
 
   constructor() {}
 
   ngOnInit() {}
+
+  getCharacterNameAndGender() {
+    return this.perso.name  + ' ' + this.perso.gender;
+  }
+
+  // handleClickExo() {
+  //   this.notifyExo.emit(this.perso);
+  // }
+
+  // handleClick() {
+  //   this.notify.emit(this.perso.name);
+  // }
 
   // lesson 34 & 35 & 36
 

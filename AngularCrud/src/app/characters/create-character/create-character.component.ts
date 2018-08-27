@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Department } from '../../models/department.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Character } from '../../models/character.model';
@@ -6,6 +6,7 @@ import { Character } from '../../models/character.model';
 import { CharacterService } from '../character.service';
 import { Router } from '@angular/router';
 import { Gender } from '../../enums/gender.enum';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-create-character',
@@ -13,6 +14,7 @@ import { Gender } from '../../enums/gender.enum';
   styleUrls: ['./create-character.component.css']
 })
 export class CreateCharacterComponent implements OnInit {
+  @ViewChild('characterForm') public createCharacterForm: NgForm;
   previewPhoto = false;
   gender = Gender;
 

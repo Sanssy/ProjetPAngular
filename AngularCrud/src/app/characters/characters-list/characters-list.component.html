@@ -1,6 +1,40 @@
 <div *ngFor="let character of characters">
-    <app-character-view [perso]="character" ></app-character-view>
+  <div class="pointerCursor" (click)="onClick(character.id)">
+    <app-character-view [perso]="character"></app-character-view>
+  </div>
 </div>
+
+<!-- 38 (template reference variable) -->
+
+<!-- <h1 #h1Variable>
+</h1>
+<div *ngFor="let character of characters">
+  <div (click)="h1Variable.innerHTML = childComponent.perso.name + ' ' + childComponent.perso.gender"> PROPERTIES
+    <div (click)="h1Variable.innerHTML = childComponent.getCharacterNameAndGender()"> METHOD
+    <app-character-view [perso]="character" #childComponent></app-character-view>
+  </div>
+</div> -->
+
+<!-- 38 FIN -->
+
+<!-- 37 (output) -->
+
+<!-- Exercise from the 37th lesson -->
+<!-- <h1 *ngIf="dataFromChildExo">
+  {{ dataFromChildExo?.name + ' / ' + dataFromChildExo?.gender }}
+</h1>
+<div *ngFor="let character of characters">
+      <app-character-view [perso]="character" (notifyExo)="handleNotifyExo($event)"></app-character-view>
+  </div> -->
+
+<!-- <h1>
+  {{ dataFromChild }}
+</h1>
+<div *ngFor="let character of characters">
+    <app-character-view [perso]="character" (notify)="handleNotify($event)"></app-character-view>
+</div> -->
+
+<!-- 37 FIN  -->
 
 <!-- 34 & 35 & 36 (input property change detection...) -->
 <!-- <button class="btn btn-primary" (click)="nextCharacter()">
