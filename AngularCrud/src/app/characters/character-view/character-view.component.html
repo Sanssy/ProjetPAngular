@@ -1,10 +1,10 @@
 <!-- <div class="card card-primary" (click)="handleClick()" > -->
 <!-- <div class="card card-primary" (click)="handleClickExo()"> -->
-<div class="card card-primary">
-  <div class="card-header bg-light">
+<div class="card " [class.border-success]="selectedCharacterId === perso.id">
+  <div class="card-header bg-light" [class.border-success]="selectedCharacterId === perso.id">
     <h5 class="card-title">{{perso.name}}</h5>
   </div>
-  <div class="card-body">
+  <div class="card-body bg-white">
     <div class="col-xs-10">
       <div class="row">
         <div class="col-xs-4">
@@ -79,7 +79,7 @@
       </div>
     </div>
   </div>
-  <div class="card-footer bg-light">
+  <div class="card-footer bg-light" [class.border-success]="selectedCharacterId === perso.id">
     <a class="btn btn-primary text-white float-right">Details</a>
   </div>
 </div>

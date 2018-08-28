@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Character } from '../../models/character.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-character-view',
@@ -8,18 +9,25 @@ import { Character } from '../../models/character.model';
 })
 export class CharacterViewComponent implements OnInit {
   @Input() perso: Character;
+  selectedCharacterId: number;
 
   // @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
   // @Output() notifyExo: EventEmitter<Character> = new EventEmitter<Character>();
 
-  constructor() {}
+  constructor(private _route: ActivatedRoute) {}
 
-  ngOnInit() {}
-
-  getCharacterNameAndGender() {
-    return this.perso.name  + ' ' + this.perso.gender;
+  ngOnInit() {
+    this.recuperationIdOfCharacter();
   }
+
+  recuperationIdOfCharacter() {
+    this.selectedCharacterId = +this._route.snapshot.paramMap.get('id');
+  }
+
+  // getCharacterNameAndGender() {
+  //   return this.perso.name  + ' ' + this.perso.gender;
+  // }
 
   // handleClickExo() {
   //   this.notifyExo.emit(this.perso);

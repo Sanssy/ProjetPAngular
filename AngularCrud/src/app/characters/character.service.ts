@@ -60,6 +60,10 @@ getCharacter(): Character[] {
 
 // 31 FIN
 
+getOneCharacter(id: number): Character {
+  return this.listCharacter.find(e => e.id === id);
+}
+
 save(character: Character) {
   return this.listCharacter.push(character);
 }
