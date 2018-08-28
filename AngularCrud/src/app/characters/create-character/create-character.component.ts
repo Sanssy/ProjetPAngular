@@ -87,7 +87,8 @@ export class CreateCharacterComponent implements OnInit {
   // }
 
   saveCharacter() {
-    this._characterService.save(this.character);
+    const newCharacter: Character = Object.assign({}, this.character);
+    this._characterService.save(newCharacter);
     this.createCharacterForm.reset();
     // this.createCharacterForm.reset({
     //   name: 'Test',
