@@ -2,7 +2,7 @@
 <!-- <form #characterForm="ngForm" (ngSubmit)=saveCharacter(character)> -->
 <!-- END -->
 
-<form #characterForm="ngForm" (ngSubmit)=saveCharacter()>
+<form #characterForm="ngForm" (ngSubmit)="saveCharacter(); characterForm.reset">
   <div class="card">
     <div class="card-header">
       Add a character

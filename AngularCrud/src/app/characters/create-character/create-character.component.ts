@@ -88,6 +88,11 @@ export class CreateCharacterComponent implements OnInit {
 
   saveCharacter() {
     this._characterService.save(this.character);
+    this.createCharacterForm.reset();
+    // this.createCharacterForm.reset({
+    //   name: 'Test',
+    //   contactPreference: 'phoneNumber'
+    // });
     this._router.navigate(['list']);
 }
 
