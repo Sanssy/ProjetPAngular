@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./characters-list.component.css']
 })
 export class CharactersListComponent implements OnInit {
+  searchTerm: string;
   characters: Character[];
   // dataFromChildExo: Character;
   // dataFromChild: string;
@@ -28,6 +29,20 @@ export class CharactersListComponent implements OnInit {
   onClick (characterId: number) {
     this._router.navigate(['character', characterId]);
   }
+
+  changeCharacterName() {
+    //                    pure change input value
+    // this.characters[0].name = 'Bob';
+    //                    pure change object reference change
+    // const newCharacterArray: Character[] = Object.assign([], this.characters);
+    // newCharacterArray[0].name = 'Bob';
+    // this.characters = newCharacterArray;
+
+    //                    Not pure change, only the value of the object change not his reference
+    this.characters[0].name = 'Bob';
+
+  }
+
 
   // handleNotifyExo(eventData: Character) {
   //   this.dataFromChildExo = eventData;

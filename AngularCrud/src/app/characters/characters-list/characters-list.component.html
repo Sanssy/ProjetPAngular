@@ -1,4 +1,14 @@
-<div *ngFor="let character of characters">
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Search By Name" style="width: 300px"
+          [(ngModel)]="searchTerm"  />
+</div>
+<div class="form-group">
+  <button (click)="changeCharacterName()" class="btn btn-primary">
+    Change Character Name
+  </button>
+</div>
+
+<div *ngFor="let character of characters | characterFilter:searchTerm">
   <div class="pointerCursor" (click)="onClick(character.id)">
     <app-character-view [perso]="character"></app-character-view>
   </div>

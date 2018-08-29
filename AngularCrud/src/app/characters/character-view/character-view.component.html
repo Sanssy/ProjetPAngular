@@ -2,7 +2,7 @@
 <!-- <div class="card card-primary" (click)="handleClickExo()"> -->
 <div class="card " [class.border-success]="selectedCharacterId === perso.id">
   <div class="card-header bg-light" [class.border-success]="selectedCharacterId === perso.id">
-    <h5 class="card-title">{{perso.name}}</h5>
+    <h5 class="card-title">{{perso.name | uppercase}}</h5>
   </div>
   <div class="card-body bg-white">
     <div class="col-xs-10">

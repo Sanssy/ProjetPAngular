@@ -14,6 +14,7 @@ import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator
 import { CharacterService } from './characters/character.service';
 import { CreateCharacterCanDeactivateGuard } from './characters/create-character-can-deactivate.guard';
 import { CharacterDetailsComponent } from './characters/character-details/character-details.component';
+import { CharacterFilterPipe } from './characters/character-filter.pipe';
 
 const appRoutes: Routes = [
   { path: 'list', component: CharactersListComponent },
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
     SelectRequiredValidatorDirective,
     ConfirmEqualValidatorDirective,
     CharacterDetailsComponent,
+    CharacterFilterPipe,
   ],
   imports: [
     BrowserModule,
