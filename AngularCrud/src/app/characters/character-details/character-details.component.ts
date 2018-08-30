@@ -51,7 +51,7 @@ export class CharacterDetailsComponent implements OnInit {
     } else {
       this._id = 1;
     }
-    this._router.navigate(['/character', this._id]);
+    this._router.navigate(['/character', this._id], {queryParamsHandling: 'preserve'});
   }
 
   observableApproach() {
