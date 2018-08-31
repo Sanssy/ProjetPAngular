@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Character } from '../models/character.model';
 import { Gender } from '../enums/gender.enum';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -54,8 +56,13 @@ export class CharacterService {
   }
 ];
 
-getCharacter(): Character[] {
-  return this.listCharacter;
+// until lesson 53
+// getCharacter(): Observable<Character[]> {
+//   return this.listCharacter;
+// }
+
+getCharacter(): Observable<Character[]> {
+  return of(this.listCharacter).pipe(delay(2000));
 }
 
 // 31 FIN

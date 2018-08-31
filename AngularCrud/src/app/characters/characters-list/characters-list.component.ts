@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from '../../models/character.model';
-import { CharacterService } from '../character.service';
+// import { CharacterService } from '../character.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -19,15 +19,47 @@ export class CharactersListComponent implements OnInit {
   // private _arrayIndex = 1 ;
 
   constructor(
-    private _characterService: CharacterService,
+    // private _characterService: CharacterService,
     private _router: Router,
     private _route: ActivatedRoute,
-  ) { }
+  ) {
+    this.characters = this._route.snapshot.data['characterList'];
+    // this._characterService.getCharacter().subscribe((charList) => {
+    //   this.characters = charList;
+    // });
+      // console.log('Subscribe : ' + new Date().toTimeString());
+      // observable approach (see the reason on the text course of the tutorial)
+    this._route.queryParamMap.subscribe((queryParams) => {
+      if (queryParams.has('searchTerm')) {
+        this.searchTerm = queryParams.get('searchTerm');
+      } else {
+        this.filteredCharacters = this.characters;
+        // console.log('Else block : ' + new Date().toTimeString());
+      }
+    });
+  }
 
   ngOnInit() {
-    this.characters = this._characterService.getCharacter();
+
+    // till lesson 53
+    // this.characters = this._characterService.getCharacter();
+    // this._characterService.getCharacter().subscribe((charList) => {
+    //   this.characters = charList;
+    //   console.log('Subscribe : ' + new Date().toTimeString());
+    //   // observable approach (see the reason on the text course of the tutorial)
+    //   this._route.queryParamMap.subscribe((queryParams) => {
+    //     if (queryParams.has('searchTerm')) {
+    //       this.searchTerm = queryParams.get('searchTerm');
+    //     } else {
+    //       this.filteredCharacters = this.characters;
+    //       console.log('Else block : ' + new Date().toTimeString());
+    //     }
+    //   });
+    // });
+
+
     // this.characterToDisplay = this.characters[0];
-    this.filteredCharacters = this.characters;
+    // this.filteredCharacters = this.characters;
 
     // snapshot approach
     // if (this._route.snapshot.queryParamMap.has('searchTerm')) {
@@ -36,14 +68,6 @@ export class CharactersListComponent implements OnInit {
     //   this.filteredCharacters = this.characters;
     // }
 
-    // observable approach
-    this._route.queryParamMap.subscribe((queryParams) => {
-      if (queryParams.has('searchTerm')) {
-        this.searchTerm = queryParams.get('searchTerm');
-      } else {
-        this.filteredCharacters = this.characters;
-      }
-    });
 
     // console.log(this._route.snapshot.queryParamMap.has('searchTerm'));
     // console.log(this._route.snapshot.queryParamMap.get('searchTerm'));

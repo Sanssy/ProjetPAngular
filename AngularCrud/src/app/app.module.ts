@@ -15,9 +15,14 @@ import { CharacterService } from './characters/character.service';
 import { CreateCharacterCanDeactivateGuard } from './characters/create-character-can-deactivate.guard';
 import { CharacterDetailsComponent } from './characters/character-details/character-details.component';
 import { CharacterFilterPipe } from './characters/character-filter.pipe';
+import { CharacterListResolverService } from './characters/character-list-resolver.service';
 
 const appRoutes: Routes = [
-  { path: 'list', component: CharactersListComponent },
+  {
+    path: 'list',
+    component: CharactersListComponent,
+    resolve: { characterList: CharacterListResolverService }
+  },
   {
     path: 'add',
     component: CreateCharacterComponent,
@@ -41,12 +46,12 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     BsDatepickerModule.forRoot(),
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { enableTracing: true}),
     NgbModule,
     FormsModule,
   ],
 
-  providers: [CharacterService, CreateCharacterCanDeactivateGuard],
+  providers: [CharacterService, CreateCharacterCanDeactivateGuard, CharacterListResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
