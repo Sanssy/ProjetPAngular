@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Character } from '../../models/character.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CharacterService } from '../character.service';
 
 @Component({
   selector: 'app-character-view',
@@ -8,14 +9,22 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./character-view.component.css']
 })
 export class CharacterViewComponent implements OnInit {
-  @Input() perso: Character;
   selectedCharacterId: number;
+  @Input() perso: Character;
+  @Input() searchTerm: string;
+  @Output() notifyDelete: EventEmitter<number> = new EventEmitter<number>();
+  confirmDelete = false;
+  // cardExpanded = true;
+  // isHidden: false;
 
   // @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
   // @Output() notifyExo: EventEmitter<Character> = new EventEmitter<Character>();
 
-  constructor(private _route: ActivatedRoute) {}
+  constructor(private _route: ActivatedRoute,
+              private _router: Router,
+              private _characterService: CharacterService,
+  ) {}
 
   ngOnInit() {
     this.recuperationIdOfCharacter();
@@ -23,6 +32,21 @@ export class CharacterViewComponent implements OnInit {
 
   recuperationIdOfCharacter() {
     this.selectedCharacterId = +this._route.snapshot.paramMap.get('id');
+  }
+
+  viewCharacter() {
+    this._router.navigate(['character', this.perso.id], {
+      queryParams: {'searchTerm': this.searchTerm}
+    });
+  }
+
+  editCharacter() {
+    this._router.navigate(['edit', this.perso.id]);
+  }
+
+  deleteCharacter() {
+    this._characterService.deteleCharacter(this.perso.id);
+    this.notifyDelete.emit(this.perso.id);
   }
 
   // getCharacterNameAndGender() {

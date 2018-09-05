@@ -4,7 +4,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Character } from '../../models/character.model';
 // import { getValueInRange } from '../../../../node_modules/@ng-bootstrap/ng-bootstrap/util/util';
 import { CharacterService } from '../character.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Gender } from '../../enums/gender.enum';
 import { NgForm } from '@angular/forms';
 
@@ -17,23 +17,9 @@ export class CreateCharacterComponent implements OnInit {
   @ViewChild('characterForm') public createCharacterForm: NgForm;
   previewPhoto = false;
   gender = Gender;
+  cardTitle: string;
 
-  character: Character = {
-    id: null,
-    name: null,
-    gender: null,
-    email: '',
-    phoneNumber: '',
-    contactPreference: '',
-    dateOfBirth: null,
-    // department: '-1', // this broke the required validation
-    // department: null,
-    department: 'select',
-    isActive: null,
-    photoPath: null,
-    password: null,
-    confirmPassword: null,
-  };
+  character: Character;
 
   // dateOfBirth: Date = new Date();
   datePickerConfig: Partial<BsDatepickerConfig>;
@@ -52,19 +38,49 @@ export class CreateCharacterComponent implements OnInit {
 
   constructor(private _characterService: CharacterService,
               private _router: Router,
+              private _route: ActivatedRoute,
   ) {
     this.datepickerConfig();
      }
 
   ngOnInit() {
     // this.checkIsActive(); FIRST SOLUTION OF THE 22th LESSON
+    this._route.paramMap.subscribe((params) => {
+      const id = +params.get('id');
+      this.getCharacter(id);
+    });
+  }
+
+  private getCharacter(id: number) {
+    if (id === 0) {
+      this.character = {
+        id: null,
+        name: null,
+        gender: null,
+        email: '',
+        phoneNumber: '',
+        contactPreference: '',
+        dateOfBirth: null,
+        // department: '-1', // this broke the required validation
+        // department: null,
+        department: 'select',
+        isActive: null,
+        photoPath: null,
+        password: null,
+        confirmPassword: null,
+      };
+      this.cardTitle = 'Add a character';
+      this.createCharacterForm.reset();
+    } else {
+      this.cardTitle = 'Edit a character';
+      this.character = Object.assign({}, this._characterService.getOneCharacter(id));
+    }
+
   }
 
   togglePhotoPreview() {
     this.previewPhoto = !this.previewPhoto;
   }
-
-
 
   datepickerConfig() {
     this.datePickerConfig = Object.assign({},

@@ -1,16 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Character } from '../models/character.model';
 import { Gender } from '../enums/gender.enum';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { delay, catchError } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacterService {
 
-  constructor() { }
-// 31 - exporting list from listCharacterComponent to characterService
+  constructor(private _httpClient: HttpClient ) {}
+
+  private _handleError(errorResponse: HttpErrorResponse) {
+    if (errorResponse.error instanceof ErrorEvent) {
+      console.log('Client Side Error: ', errorResponse.error.message);
+    } else {
+      console.log('Server Side Error: ', errorResponse);
+    }
+    return throwError(new Error('There is a problem with the service. We are notified & working on it. Please try again later.'));
+  }
+
+  // 31 - exporting list from listCharacterComponent to characterService
+  // tslint:disable-next-line:member-ordering
   private listCharacter: Character[] = [
     {
       id: 1,
@@ -24,8 +36,8 @@ export class CharacterService {
       isActive: true,
       photoPath: 'assets/images/Homer1.jpg',
       password: '',
-      confirmPassword: '',
-  },
+      confirmPassword: ''
+    },
     {
       id: 2,
       name: 'Bart',
@@ -38,8 +50,8 @@ export class CharacterService {
       isActive: true,
       photoPath: 'assets/images/Bart1.jpg',
       password: '',
-      confirmPassword: '',
-  },
+      confirmPassword: ''
+    },
     {
       id: 3,
       name: 'Maggy',
@@ -52,27 +64,46 @@ export class CharacterService {
       isActive: true,
       photoPath: 'assets/images/Maggy2.png',
       password: '',
-      confirmPassword: '',
+      confirmPassword: ''
+    }
+  ];
+
+  // until lesson 53
+  // getCharacter(): Observable<Character[]> {
+  //   return this.listCharacter;
+  // }
+
+  getCharacter(): Observable<Character[]> {
+    // return of(this.listCharacter).pipe(delay(2000));
+    return this._httpClient.get<Character[]>('http://localhost:3000/characters1')
+            .pipe(catchError(this._handleError));
   }
-];
 
-// until lesson 53
-// getCharacter(): Observable<Character[]> {
-//   return this.listCharacter;
-// }
+  // 31 FIN
 
-getCharacter(): Observable<Character[]> {
-  return of(this.listCharacter).pipe(delay(2000));
-}
+  getOneCharacter(id: number): Character {
+    return this.listCharacter.find(e => e.id === id);
+  }
 
-// 31 FIN
+  save(character: Character) {
+    if (character.id === null) {
+      const maxid = this.listCharacter.reduce(function(e1, e2) {
+        return e1.id > e2.id ? e1 : e2;
+      }).id;
+      character.id = maxid + 1;
+      this.listCharacter.push(character);
+    } else {
+      const foundIndex = this.listCharacter.findIndex(
+        e => e.id === character.id
+      );
+      this.listCharacter[foundIndex] = character;
+    }
+  }
 
-getOneCharacter(id: number): Character {
-  return this.listCharacter.find(e => e.id === id);
-}
-
-save(character: Character) {
-  return this.listCharacter.push(character);
-}
-
+  deteleCharacter(id: number) {
+    const idToDelete = this.listCharacter.findIndex(e => e.id === id);
+    if (idToDelete !== -1) {
+      this.listCharacter.splice(idToDelete, 1);
+    }
+  }
 }

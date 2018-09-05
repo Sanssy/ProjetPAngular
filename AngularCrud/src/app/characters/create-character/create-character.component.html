@@ -5,7 +5,7 @@
 <form #characterForm="ngForm" (ngSubmit)="saveCharacter(); characterForm.reset">
   <div class="card">
     <div class="card-header">
-      Add a character
+      {{ cardTitle }}
     </div>
     <div class="card-body">
       <!-- <div class="form-group">
@@ -201,7 +201,7 @@
       <div class="form-group" [class.was-validated]="email.invalid">
         <label class="col-form-label" for="email">Email address</label>
         <input class="form-control" type="text" name="email" [(ngModel)]="character.email" id="email" aria-describedby="emailHelp"
-          placeholder="Enter email" #email="ngModel" [required]="contactPreference.value =='email'" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
+          placeholder="Enter email" #email="ngModel" [required]="contactPreference.value =='Email'" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
 
         <!-- [ngClass]="{'is-invalid' : email.invalid}" -->
 
@@ -227,7 +227,7 @@
       <div class="form-group" [class.was-validated]="phoneNumber.invalid">
         <label class="col-form-label" for="phoneNumber">Phone Number</label>
         <input class="form-control" type="text" name="phoneNumber" [(ngModel)]="character.phoneNumber" id="phoneNumber" placeholder="Enter phone number"
-          #phoneNumber="ngModel" [required]="contactPreference.value =='phoneNumber'">
+          #phoneNumber="ngModel" [required]="contactPreference.value =='Phone'">
         <small class="invalid-feedback" *ngIf="phoneNumber.invalid">Phone Number is required</small>
       </div>
 
@@ -238,12 +238,12 @@
 
         <div class="form-check">
           <div class="form-check-inline">
-            <input type="radio" required #contactPreference="ngModel" value="email" id="emailPref" name="contactPreference" [(ngModel)]="character.contactPreference"
+            <input type="radio" required #contactPreference="ngModel" value="Email" id="emailPref" name="contactPreference" [(ngModel)]="character.contactPreference"
               class="form-check-input">
             <label for="emailPref" class="form-check-label">Email</label>
           </div>
           <div class="form-check-inline">
-            <input type="radio" required #contactPreference="ngModel" value="phoneNumber" id="phoneNumberPref" name="contactPreference"
+            <input type="radio" required #contactPreference="ngModel" value="Phone" id="phoneNumberPref" name="contactPreference"
               [(ngModel)]="character.contactPreference" class="form-check-input">
             <label for="phoneNumberPref" class="form-check-label">Phone Number</label>
           </div>
@@ -259,11 +259,11 @@
 
         <div class="form-check">
           <div class="form-check-inline">
-            <input type="radio" required #gender="ngModel" value="male" id="male" name="gender" [(ngModel)]="character.gender" class="form-check-input">
+            <input type="radio" required #gender="ngModel" value="MALE" id="male" name="gender" [(ngModel)]="character.gender" class="form-check-input">
             <label for="male" class="form-check-label">Male</label>
           </div>
           <div class="form-check-inline">
-            <input type="radio" required #gender="ngModel" value="female" id="female" name="gender" [(ngModel)]="character.gender" class="form-check-input">
+            <input type="radio" required #gender="ngModel" value="FEMALE" id="female" name="gender" [(ngModel)]="character.gender" class="form-check-input">
             <label class="form-check-label" for="female">Female</label>
           </div>
           <small class="invalid-feedback d-block" *ngIf="gender.touched && gender.invalid">Gender is required</small>
@@ -437,13 +437,15 @@
       </div>
 
       <div class="form-group">
-        <button type="button" class="btn btn-primary" (click)="togglePhotoPreview()">
+        <button type="button" class="btn btn-primary" (click)="togglePhotoPreview()"
+                *ngIf="character.photoPath !== '' && character.photoPath !== null">
           {{previewPhoto? 'Hide ' : 'Show '}} Preview
         </button>
       </div>
 
       <div class="form-group">
-        <img [src]="character.photoPath" height="200" width="200" *ngIf="previewPhoto" />
+        <img [src]="character.photoPath" height="200" width="200"
+        *ngIf="previewPhoto && character.photoPath !== '' && character.photoPath !== null" />
       </div>
 
       <!-- FIN COURS 17 18 & 19 -->

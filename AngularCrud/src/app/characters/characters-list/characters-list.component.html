@@ -1,18 +1,20 @@
 <div class="form-group">
-  <input type="text" class="form-control" placeholder="Search By Name" style="width: 300px"
-          [(ngModel)]="searchTerm"  />
+  <!-- <input type="text" class="form-control" placeholder="Search By Name" style="width: 300px" [(ngModel)]="searchTerm"  /> -->
+  <input type="text" class="form-control" placeholder="Search By Name" [(ngModel)]="searchTerm"/>
 </div>
-<div class="form-group">
+
+<!-- <div class="form-group">
   <button (click)="changeCharacterName()" class="btn btn-primary">
     Change Character Name
   </button>
-</div>
+</div> -->
 
 <!-- <div *ngFor="let character of characters | characterFilter:searchTerm" (mousemove)="onMouseMove()" > -->
 <div *ngFor="let character of filteredCharacters">
-  <div class="pointerCursor" (click)="onClick(character.id)">
-    <app-character-view [perso]="character"></app-character-view>
-  </div>
+  <!-- <div class="pointerCursor" (click)="onClick(character.id)"> -->
+    <app-character-view [perso]="character" [searchTerm]="searchTerm"
+    (notifyDelete)="onDeteleNotification($event)"></app-character-view>
+  <!-- </div> -->
 </div>
 
 <!-- 38 (template reference variable) -->

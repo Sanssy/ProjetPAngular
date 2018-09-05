@@ -1,12 +1,28 @@
-.card-img-top {
+  img.card-img-top {
   width: 208px;
   height: 210px;
+  padding-left: 17px;
 }
 
-.card {
+
+div.card {
   margin-bottom: 10px;
 }
 
 h5.card-title {
   margin-bottom: 0px;
 }
+
+
+button.btn {
+  width: 70px;
+  margin-right: 5px;
+}
+
+span.alertDelete {
+  margin-right: 5px;
+}
+
+/* .pointerCursor {
+  cursor: pointer;
+} */

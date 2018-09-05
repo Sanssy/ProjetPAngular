@@ -1,0 +1,11 @@
+.pointerCursor {
+  cursor: pointer;
+}
+
+div.card {
+  margin-bottom: 10px;
+}
+
+h5.card-title {
+  margin-bottom: 0px;
+}

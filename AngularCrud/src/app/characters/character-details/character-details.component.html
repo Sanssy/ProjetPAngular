@@ -78,8 +78,10 @@
     </div>
   </div>
   <div class="card-footer bg-light">
+    <!-- <a class="btn btn-primary text-white" [routerLink]="['/list', {id:character.id}]"
+    queryParamsHandling="preserve" [queryParams]="{'newParam':'newValue'}">Back to the list</a> -->
     <a class="btn btn-primary text-white" [routerLink]="['/list', {id:character.id}]"
-    queryParamsHandling="preserve" [queryParams]="{'newParam':'newValue'}">Back to the list</a>
+    queryParamsHandling="preserve">Back to the list</a>
     <button class="btn btn-primary text-white pull-right" (click)="viewNextCharacter()">View Next character</button>
   </div>
 </div>
