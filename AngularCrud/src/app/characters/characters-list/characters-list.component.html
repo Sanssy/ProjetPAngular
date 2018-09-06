@@ -13,8 +13,13 @@
 <div *ngFor="let character of filteredCharacters">
   <!-- <div class="pointerCursor" (click)="onClick(character.id)"> -->
     <app-character-view [perso]="character" [searchTerm]="searchTerm"
-    (notifyDelete)="onDeteleNotification($event)"></app-character-view>
+    (notifyDelete)="onDeteleNotification($event)">
+  </app-character-view>
   <!-- </div> -->
+</div>
+
+<div *ngIf="error">
+  {{ error }}
 </div>
 
 <!-- 38 (template reference variable) -->

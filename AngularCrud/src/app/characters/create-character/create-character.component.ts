@@ -14,7 +14,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./create-character.component.css']
 })
 export class CreateCharacterComponent implements OnInit {
-  @ViewChild('characterForm') public createCharacterForm: NgForm;
+  @ViewChild('characterForm')
+  public createCharacterForm: NgForm;
   previewPhoto = false;
   gender = Gender;
   cardTitle: string;
@@ -29,23 +30,24 @@ export class CreateCharacterComponent implements OnInit {
   // department = '3';
 
   departments: Department[] = [
-    {id: 1, name: 'Help desk'},
-    {id: 2, name: 'HR'},
-    {id: 3, name: 'IT'},
-    {id: 4, name: 'Payroll'},
-    {id: 5, name: 'Admin'},
+    { id: 1, name: 'Help desk' },
+    { id: 2, name: 'HR' },
+    { id: 3, name: 'IT' },
+    { id: 4, name: 'Payroll' },
+    { id: 5, name: 'Admin' }
   ];
 
-  constructor(private _characterService: CharacterService,
-              private _router: Router,
-              private _route: ActivatedRoute,
+  constructor(
+    private _characterService: CharacterService,
+    private _router: Router,
+    private _route: ActivatedRoute
   ) {
     this.datepickerConfig();
-     }
+  }
 
   ngOnInit() {
     // this.checkIsActive(); FIRST SOLUTION OF THE 22th LESSON
-    this._route.paramMap.subscribe((params) => {
+    this._route.paramMap.subscribe(params => {
       const id = +params.get('id');
       this.getCharacter(id);
     });
@@ -67,15 +69,20 @@ export class CreateCharacterComponent implements OnInit {
         isActive: null,
         photoPath: null,
         password: null,
-        confirmPassword: null,
+        confirmPassword: null
       };
       this.cardTitle = 'Add a character';
       this.createCharacterForm.reset();
     } else {
       this.cardTitle = 'Edit a character';
-      this.character = Object.assign({}, this._characterService.getOneCharacter(id));
+      this._characterService
+        .getOneCharacter(id)
+        .subscribe(
+          (character) => this.character = character,
+          (error: any) => console.log(error)
+        );
+      // this.character = Object.assign({}, this._characterService.getOneCharacter(id));
     }
-
   }
 
   togglePhotoPreview() {
@@ -83,16 +90,16 @@ export class CreateCharacterComponent implements OnInit {
   }
 
   datepickerConfig() {
-    this.datePickerConfig = Object.assign({},
+    this.datePickerConfig = Object.assign(
+      {},
       {
         containerClass: 'theme-dark-blue',
         // showWeekNumbers: false,
-        dateInputFormat: 'DD-MM-YYYY',
+        dateInputFormat: 'DD-MM-YYYY'
         // minDate: new Date(2018, 0, 1),
         // maxDate: new Date(2018, 11, 31),
       }
     );
-
   }
 
   // FIRST SOLUTION OF THE 22th LESSON
@@ -102,21 +109,39 @@ export class CreateCharacterComponent implements OnInit {
   //   }
   // }
 
-  saveCharacter() {
-    const newCharacter: Character = Object.assign({}, this.character);
-    this._characterService.save(newCharacter);
-    this.createCharacterForm.reset();
-    // this.createCharacterForm.reset({
-    //   name: 'Test',
-    //   contactPreference: 'phoneNumber'
-    // });
-    this._router.navigate(['list']);
-}
+  saveCharacter(): void {
+    if (this.character.id === null) {
+      this._characterService.addCharacter(this.character).subscribe(
+        (data: Character) => {
+          console.log(data);
+          this.createCharacterForm.reset();
+          this._router.navigate(['list']);
+        },
+        (error: any) => console.log(error)
+      );
+    } else {
+      this._characterService.updateCharacter(this.character).subscribe(
+        () => {
+          this.createCharacterForm.reset();
+          this._router.navigate(['list']);
+        },
+        (error: any) => console.log(error)
+      );
+    }
+  }
+  //   saveCharacter() {
+  //     const newCharacter: Character = Object.assign({}, this.character);
+  //     this._characterService.save(newCharacter);
+  //     this.createCharacterForm.reset();
+  //     // this.createCharacterForm.reset({
+  //     //   name: 'Test',
+  //     //   contactPreference: 'phoneNumber'
+  //     // });
+  //     this._router.navigate(['list']);
+  // }
 
-// Before the 31st lesson :
+  // Before the 31st lesson :
   // saveCharacter(character: Character): void {
   //   console.log(character);
   // }
-
-
 }

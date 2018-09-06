@@ -1,6 +1,6 @@
-<div class="card" >
+<div class="card" *ngIf="character">
   <div class="card-header bg-light">
-    <h5 class="card-title">{{character?.name}}</h5>
+    <h5 class="card-title">{{character.name}}</h5>
   </div>
   <div class="card-body">
     <div class="col-xs-10">
@@ -15,7 +15,7 @@
               Gender
             </div>
             <div class="col-sm-5.5">
-              : {{character?.gender}}
+              : {{character.gender}}
             </div>
           </div>
           <div class="row">
@@ -23,7 +23,7 @@
               Date of Birth
             </div>
             <div class="col-sm-5.5">
-              : {{character?.dateOfBirth | date }}
+              : {{character.dateOfBirth | date }}
             </div>
           </div>
           <div class="row">
@@ -31,7 +31,7 @@
               Contact Preference
             </div>
             <div class="col-sm-5.5">
-              : {{character?.contactPreference}}
+              : {{character.contactPreference}}
             </div>
           </div>
           <div class="row">
@@ -39,7 +39,7 @@
               Phone
             </div>
             <div class="col-sm-5.5">
-              : {{character?.phoneNumber}}
+              : {{character.phoneNumber}}
             </div>
           </div>
           <div class="row">
@@ -47,7 +47,7 @@
               Email
             </div>
             <div class="col-sm-5.5">
-              : {{character?.email}}
+              : {{character.email}}
             </div>
           </div>
           <div class="row">
@@ -69,7 +69,7 @@
               Is Active
             </div>
             <div class="col-sm-5.5">
-              : {{character?.isActive}}
+              : {{character.isActive}}
             </div>
           </div>
 

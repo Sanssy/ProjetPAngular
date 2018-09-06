@@ -45,7 +45,10 @@ export class CharacterViewComponent implements OnInit {
   }
 
   deleteCharacter() {
-    this._characterService.deteleCharacter(this.perso.id);
+    this._characterService.deteleCharacter(this.perso.id).subscribe(
+      () => console.log(`Character with Id = ${this.perso.id} deleted`),
+      (error) => console.log(error),
+    );
     this.notifyDelete.emit(this.perso.id);
   }
 

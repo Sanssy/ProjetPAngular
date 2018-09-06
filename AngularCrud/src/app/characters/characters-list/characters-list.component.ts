@@ -13,6 +13,7 @@ export class CharactersListComponent implements OnInit {
   private _searchTerm: string;
   characters: Character[];
   filteredCharacters: Character[]; // to store the filtered list of characters
+  error: string;
 
   // dataFromChildExo: Character;
   // dataFromChild: string;
@@ -25,7 +26,20 @@ export class CharactersListComponent implements OnInit {
     private _route: ActivatedRoute
   ) {
     // this.characters = this._route.snapshot.data['characterList'];
+    // const resolvedCharacterList: ResolvedCharacterList = this._route.snapshot.data['characterList'];
+    // if (resolvedCharacterList.error == null) {
+    //   this.characters = resolvedCharacterList.characterList;
+    // } else {
+    //   this.error = resolvedCharacterList.error;
+    // }
     const resolvedCharacterList: ResolvedCharacterList = this._route.snapshot.data['characterList'];
+    const resolvedData: Character[] | string = this._route.snapshot.data['characterList'];
+    if (Array.isArray(resolvedData)) {
+      this.characters = resolvedData;
+    } else {
+      this.error = resolvedData;
+    }
+
     // this._characterService.getCharacter().subscribe((charList) => {
     //   this.characters = charList;
     // });
