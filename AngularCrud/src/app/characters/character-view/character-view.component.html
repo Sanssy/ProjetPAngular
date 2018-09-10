@@ -1,58 +1,57 @@
 <!-- <div class="card card-primary" (click)="handleClick()" > -->
 <!-- <div class="card card-primary" (click)="handleClickExo()"> -->
 <app-accordion [title]="perso.name" [hasJustViewed]="selectedCharacterId === perso.id" [isHidden]="true">
-  <div class="col-xs-10 myCardBody">
+  <div class="col-xs-12 col-sm-12 myCardBody">
     <div class="row">
-      <div class="col-xs-4">
+      <div class="col-xs-12 col-sm-4">
         <img class="card-img-top" [src]="perso.photoPath" alt="Card image cap">
       </div>
-      <div class="col-sm-8">
-
+      <div class="col-xs-12 col-sm-8">
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-xs-6 col-sm-6">
             Gender
           </div>
-          <div class="col-sm-5.5">
+          <div class="col-xs-5.5 col-sm-5.5">
             : {{perso.gender}}
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-xs-6 col-sm-6">
             Date of Birth
           </div>
-          <div class="col-sm-5.5">
+          <div class="col-xs-5.5 col-sm-5.5">
             : {{perso.dateOfBirth | date }}
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-xs-6 col-sm-6">
             Contact Preference
           </div>
-          <div class="col-sm-5.5">
+          <div class="col-xs-5.5 col-sm-5.5">
             : {{perso.contactPreference}}
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-xs-6 col-sm-6">
             Phone
           </div>
-          <div class="col-sm-5.5">
+          <div class="col-xs-5.5 col-sm-5.5">
             : {{perso.phoneNumber}}
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-xs-6 col-sm-6">
             Email
           </div>
-          <div class="col-sm-5.5">
+          <div class="col-xs-5.5 col-sm-5.5">
             : {{perso.email}}
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-xs-6 col-sm-6">
             Department
           </div>
-          <div class="col-sm-5.5" [ngSwitch]="perso.department">
+          <div class="col-xs-5.5 col-sm-5.5" [ngSwitch]="perso.department">
             :
             <span *ngSwitchCase="1">Help Desk</span>
             <span *ngSwitchCase="2">HR</span>
@@ -63,10 +62,10 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-xs-6 col-sm-6">
             Is Active
           </div>
-          <div class="col-sm-5.5">
+          <div class="col-xs-5.5 col-sm-5.5">
             : {{perso.isActive}}
           </div>
         </div>
@@ -75,15 +74,15 @@
     </div>
   </div>
   <div class="myCardFooter">
-    <button class="btn btn-primary text-white" (click)="viewCharacter()">View</button>
-    <button class="btn btn-primary text-white" (click)="editCharacter()">Edit</button>
+    <button class="btn btn-primary text-white col-xs-12 " (click)="viewCharacter()">View</button>
+    <button class="btn btn-primary text-white col-xs-12" (click)="editCharacter()">Edit</button>
     <span *ngIf="confirmDelete">
       <span class="alertDelete">Are you sure you want to
         <b> Delete </b> ?</span>
-      <button class="btn btn-danger text-white" (click)="deleteCharacter()">Yes</button>
-      <button class="btn btn-primary text-white" (click)="confirmDelete=false">No</button>
+      <button class="btn btn-danger text-white col-xs-12" (click)="deleteCharacter()">Yes</button>
+      <button class="btn btn-primary text-white col-xs-12" (click)="confirmDelete=false">No</button>
     </span>
-    <button *ngIf="!confirmDelete" class="btn btn-danger text-white" (click)="confirmDelete=true">Delete</button>
+    <button *ngIf="!confirmDelete" class="btn btn-danger text-white col-xs-12" (click)="confirmDelete=true">Delete</button>
   </div>
 </app-accordion>
 

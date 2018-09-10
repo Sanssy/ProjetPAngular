@@ -1,9 +1,8 @@
   img.card-img-top {
-  width: 208px;
-  height: 210px;
-  padding-left: 17px;
+  width: auto;
+  height: auto;
+  padding-left: auto;
 }
-
 
 div.card {
   margin-bottom: 10px;
